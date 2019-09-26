@@ -29,7 +29,8 @@ class _MobyleState extends State<Mobyle> {
   Widget build(BuildContext context) {
     
     return Scaffold(
-      body: Column(
+      body: Scaffold( 
+        body: Column(
         children: <Widget>[
           Image.asset('image/rik-i-morti--what.jpg'),
           Text("Morti Smit", style: TextStyle(fontSize: 35, height: 1.5),),
@@ -48,7 +49,7 @@ class _MobyleState extends State<Mobyle> {
           // )
         ],
       ),
-      
+    )
     );
   }
 }
@@ -116,15 +117,18 @@ class Button extends StatefulWidget {
 
 class _ButtonState extends State<Button> {
   @override
+  int click;
   Widget telo;
   Widget build(BuildContext context) {
-  void obnova(int click){
-    switch (click){
-      case 1: telo = AboutMe(); break;
-      case 2: telo = Work(); break;
-      case 3: telo = Contact(); break;   
-    }
+  void obnova(int i){
+    click = i;
     setState((){});
+  }
+  switch(click){
+    case 1: telo = AboutMe(); break;
+    case 2: telo = Work(); break;
+    case 3: telo = Contact(); break;
+    default: telo = AboutMe(); break;
   }
     return Column(
       children: <Widget>[
@@ -155,7 +159,7 @@ class AboutMe extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Text("1"),
+      child: Text("Morty is 14 years old and is a student at Harry Herpson High School along with his older sister Summer. Morty seems to be suffering from anxiety and is easily stressed, largely as a result of traumatic experiences during his adventures with Rick. He is often dismissed as idiotic by Rick and others, but is shown to be wiser than his grandfather in terms of understanding people's feelings, and is capable of explosive anger and moral outrage in objection to Rick's attitude and actions."),
     );
   }
 }
@@ -169,11 +173,51 @@ class Work extends StatelessWidget {
   }
 }
 
-class Contact extends StatelessWidget {
+class Contact extends StatefulWidget {
+  @override
+  _ContactState createState() => _ContactState();
+}
+
+class _ContactState extends State<Contact> {
   @override
   Widget build(BuildContext context) {
+    TextEditingController nick;
+    TextEditingController mail;
+    TextEditingController com;
+    String ni;
+    String ma;
+    String co;
+    bool but = false;
+    void provText (){
+      if ((ni != null) && (ni != '') &&(ma!= null) && (ma!='') && (co!=null) && (co!='')) {
+        but = true;
+      }
+    }
+
+    void send (){
+     setState(() {print(ni);});
+    }
     return Container(
-      child: Text("3"),
+      child: ListView(
+
+        children: <Widget>[
+          TextField(onEditingComplete: (){provText();}, onChanged: (s){ni = s;},controller: nick, decoration: InputDecoration(
+            labelText: 'nickname',
+          ),),
+          TextField(onEditingComplete: (){provText();},onChanged: (s){ma = s;},controller: mail, decoration: InputDecoration(
+            labelText: 'e-mail',
+          ),),
+          TextField(onEditingComplete: (){provText();},onChanged: (s){co = s;}, controller: com, decoration: InputDecoration(
+            labelText: 'coment',
+          ),),
+           Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: <Widget>[
+                FlatButton(child: Text("Send"), onPressed: (){send();}),
+              ],
+            ),
+        ],
+      ),
     );
   }
 }
