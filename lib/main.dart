@@ -36,17 +36,6 @@ class _MobyleState extends State<Mobyle> {
           Text("Morti Smit", style: TextStyle(fontSize: 35, height: 1.5),),
           Text("Grandson of scientist", style: TextStyle(fontStyle: FontStyle.italic),),
           Expanded(child: Button()),
-          // Row(
-          //   mainAxisAlignment: MainAxisAlignment.center,
-          //   children: <Widget>[
-          //     FlatButton(child: Text("About me"), onPressed:() {obnova(1);},),
-          //     FlatButton(child: Text("Work"), onPressed:() {obnova(2);},),
-          //     FlatButton(child: Text("Contact"), onPressed: (){obnova(3);},),
-          //   ]
-          // ),
-          // Expanded(
-          //   child: telo,
-          // )
         ],
       ),
     )
@@ -62,16 +51,6 @@ class _DesktopState extends State<Desktop> {
 
   @override
   Widget build(BuildContext context) {
-    // void obnova(int click){
-    //   switch (click){
-    //    case 1: telo = AboutMe(); break;
-    //    case 2: telo = Work(); break;
-    //    case 3: telo = Contact(); break;
-   
-    //   }
-    //   setState((){});
-    // }
-
     return Scaffold(
       body: Row(children: <Widget>[
         Expanded(
@@ -86,24 +65,6 @@ class _DesktopState extends State<Desktop> {
           ),
         ),
         Expanded(child: Button(),
-            //       child: Column(
-            // children: <Widget>[
-            //   Expanded(
-            //     child: Row(
-            //       mainAxisAlignment: MainAxisAlignment.center,
-            //       children: <Widget> [
-            //         FlatButton(child: Text("About me"), onPressed:() {obnova(1);},),
-            //         FlatButton(child: Text("Work"), onPressed:() {obnova(2);},),
-            //         FlatButton(child: Text("Contact"), onPressed: (){obnova(3);},),
-            //       ]
-            //     ),
-      //         ),
-            
-          
-      //     Expanded(flex: 10,
-
-      //       child: telo,
-      //     )]),
         )
       ],)
     );
@@ -181,33 +142,33 @@ class Contact extends StatefulWidget {
 class _ContactState extends State<Contact> {
   @override
   Widget build(BuildContext context) {
-    TextEditingController nick;
-    TextEditingController mail;
-    TextEditingController com;
+    TextEditingController nick = TextEditingController();
+    TextEditingController mail = TextEditingController();
+    TextEditingController com = TextEditingController();
     String ni;
     String ma;
     String co;
-    bool but = false;
-    void provText (){
-      if ((ni != null) && (ni != '') &&(ma!= null) && (ma!='') && (co!=null) && (co!='')) {
-        but = true;
-      }
-    }
 
-    void send (){
-     setState(() {print(ni);});
+    void send(){
+      print('function');
+      if ((ni != null) && (ni != '') &&(ma!= null) && (ma!='') && (co!=null) && (co!='')) {
+       nick.clear();
+       mail.clear();
+       com.clear();
+      }
+     
     }
     return Container(
       child: ListView(
 
         children: <Widget>[
-          TextField(onEditingComplete: (){provText();}, onChanged: (s){ni = s;},controller: nick, decoration: InputDecoration(
+          TextField(onChanged: (s){ni = s;},controller: nick, decoration: InputDecoration(
             labelText: 'nickname',
           ),),
-          TextField(onEditingComplete: (){provText();},onChanged: (s){ma = s;},controller: mail, decoration: InputDecoration(
+          TextField(onChanged: (s){ma = s;},controller: mail, decoration: InputDecoration(
             labelText: 'e-mail',
           ),),
-          TextField(onEditingComplete: (){provText();},onChanged: (s){co = s;}, controller: com, decoration: InputDecoration(
+          TextField(onChanged: (s){co = s;}, controller: com, decoration: InputDecoration(
             labelText: 'coment',
           ),),
            Row(
