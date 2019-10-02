@@ -108,7 +108,10 @@ class _ButtonState extends State<Button> {
           
           Expanded(
 
-            child: telo,
+            child: Padding(
+              padding: const EdgeInsets.only(right: 50),
+              child: Center(child: telo),
+            ),
           )]
       
       
